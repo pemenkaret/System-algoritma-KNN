@@ -6,26 +6,26 @@ import cv2
 app = Flask(__name__)
 
 # Folder untuk menyimpan gambar yang diunggah
-UPLOAD_FOLDER = './uploads/'
+UPLOAD_FOLDER = './static/uploads/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Membuat folder uploads jika belum ada
+# Membuat folder static/uploads jika belum ada
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 # Memuat model dan label encoder
-with open('gesture_model.pkl', 'rb') as f:
+with open('model/gesture_model.pkl', 'rb') as f:
     model = pickle.load(f)
-with open('label_encoder.pkl', 'rb') as f:
+with open('model/label_encoder.pkl', 'rb') as f:
     label_encoder = pickle.load(f)
 
 # Fungsi untuk memproses gambar dan membuat prediksi
 def predict_image(image_path):
     # Membaca dan memproses gambar
-    image = cv2.imread(image_path) 
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # Konversi gambar ke grayscale
-    resized_image = cv2.resize(gray_image, (64, 64)) # Ukuran standar
-    features = resized_image.flatten().reshape(1, -1) # Ubah gambar ke vektor 1D
+    image = cv2.imread(image_path)
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Konversi gambar ke grayscale
+    resized_image = cv2.resize(gray_image, (64, 64))  # Ukuran standar
+    features = resized_image.flatten().reshape(1, -1)  # Ubah gambar ke vektor 1D
     
     # Prediksi menggunakan model
     prediction = model.predict(features)

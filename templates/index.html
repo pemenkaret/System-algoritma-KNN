@@ -52,19 +52,19 @@
             color: #4CAF50;
         }
 
-        a {
-            display: inline-block;
+        button {
             margin-top: 20px;
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
-            text-decoration: none;
+            border: none;
             border-radius: 4px;
             font-size: 16px;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
 
-        a:hover {
+        button:hover {
             background-color: #45a049;
         }
     </style>
@@ -101,7 +101,7 @@
                 const resultDiv = document.getElementById('result');
                 resultDiv.innerHTML = `
                     <h2>Hasil Prediksi</h2>
-                    <img src="/uploads/${data.image_path}" alt="Uploaded Image">
+                    <img src="${data.image_url}" alt="Uploaded Image">
                     <p>Huruf yang diprediksi: <strong>${data.predicted_letter}</strong></p>
                 `;
             })

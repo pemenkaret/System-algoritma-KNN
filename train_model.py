@@ -45,7 +45,7 @@ def train_model():
 
     # Membuat dan melatih model KNN
     # KNN menggunakan 3 tetangga terdekat
-    model = KNeighborsClassifier(n_neighbors=3)
+    model = KNeighborsClassifier(n_neighbors = 3 )
     model.fit(X_train, y_train)
 
     # Simpan model dan label encoder
